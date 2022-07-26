@@ -1,0 +1,286 @@
+@import url('./base/reset.css');
+@import url('./base/base.css');
+@import url('./base/typography.css');
+
+@import url('./component/hero.css');
+
+:root {
+    --aside-width: calc(40px + 4vw);
+    --margin: 3vw;
+}
+
+.paint-your-pixture .hero {
+    background-image: url('/resource/image/hero1.png');
+}
+
+.paint-your-pixture .hero .hero-text {
+    margin: 0px var(--margin);
+    margin-top: 30vh;
+}
+
+.paint-your-pixture .hero .text {
+    width: 90%;
+    margin: 0px var(--margin);
+    margin-top: 70px;
+}
+
+.paint-your-pixture .hero > .more {
+    width: 40px;
+    position: absolute;
+    bottom: var(--margin);
+    right: var(--margin);
+}
+
+.your-passion {
+    background-color: var(--primary-color);
+    background-image: url('/resource/image/gradient.png'), url('/resource/image/cover-overlay2.png');
+    background-position: center, left;
+    background-size: cover, 50%;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay, normal;
+}
+
+.your-passion aside {
+    display: none;
+}
+
+.your-passion .hero-container {
+    height: 70vh;
+}
+
+.your-passion .hero-container .hero {
+    background-color: var(--primary-color);
+    background-image: url('/resource/image/hero2.png');
+}
+
+.your-passion .hero-container .hero .hero-text {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+}
+
+.your-passion .hero .text {
+    position: absolute;
+    bottom: calc(3 * var(--margin));
+    margin: 0px calc(2 * var(--margin));;
+    text-align: center;
+}
+
+.your-passion .paragraph {
+    display: flex;
+}
+
+.your-passion .paragraph .text {
+    margin: calc(2 * var(--margin));
+}
+
+.your-passion .paragraph .text p {
+    margin-bottom: var(--margin);
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.your-passion .paragraph .section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    gap: calc(2 * var(--margin));
+    margin: calc(2 * var(--margin));
+}
+
+.your-passion .paragraph .section .card {
+    flex: 1 1 250px;
+}
+
+.your-passion .paragraph .section .card header {
+    font-size: 1.5rem;
+    margin-bottom: var(--margin);
+}
+
+.texture {
+    position: relative;
+    background-image: linear-gradient(100deg, rgba(0, 0, 0, 0) 40%, var(--primary-color) 80%), url('/resource/image/hero3.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 60vh;
+}
+
+.texture .text {
+    position: absolute;
+    left: calc(2 * var(--margin));
+    bottom: 10%;
+}
+
+.texture .text .sub-header {
+    font-size: 1.8rem;
+}
+
+.texture .text header {
+    font-size: calc(3rem + 1vw);
+    margin-bottom: var(--margin);
+}
+
+.texture .text p {
+    width: 90%;
+}
+
+footer .content {
+    display: flex;
+    flex-wrap: wrap;
+    margin: calc(2 * var(--margin));
+    gap: calc(2 * var(--margin));
+}
+
+footer .card {
+    flex: 0 1 250px;
+    line-height: 1.5;
+}
+
+footer header {
+    color: #0d4363;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+footer li {
+    margin-bottom: 15px;
+}
+
+footer > p {
+    color: #5c5b61;
+    margin: calc(2 * var(--margin));
+}
+
+@media screen and (min-width: 500px) {
+    .paint-your-pixture .hero .text {
+        width: 70%;
+    }
+
+    .your-passion .hero-container {
+        height: 100vh;
+    }
+
+    .texture .text p {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    :root {
+        --margin: 7vw;
+    }
+
+    .your-passion aside {
+        display: flex;
+        flex-shrink: 0;
+    }
+
+    .your-passion .paragraph .text {
+        column-count: 2;
+        margin: calc(var(--margin) / 2) var(--margin);
+    }
+
+    .your-passion .paragraph .text p {
+        margin-bottom: calc(var(--margin) / 3);
+    }
+
+    .your-passion .paragraph .section {
+        flex-wrap: nowrap;
+        gap: calc(var(--margin) / 3);
+        margin: calc(var(--margin) / 2) var(--margin);
+    }
+
+    .your-passion .paragraph .section .card header {
+        margin-bottom: calc(var(--margin) / 3);
+    }
+
+    .texture {
+        height: 75vh;
+    }
+
+    .texture .text {
+        width: min-content;
+        height: min-content;
+        top: 0px;
+        bottom: 0px;
+        left: auto;
+        right: var(--margin);
+        margin: auto;
+    }
+
+    .texture .text header {
+        white-space: nowrap;
+        margin-bottom: 20px;
+    }
+
+    .texture .text p {
+        width: 110%;
+    }
+
+    .hero-container aside {
+        justify-content: end;
+    }
+
+    .hero-container aside .arrow {
+        width: 1.5vw;
+    }
+
+    .hero-container .hero .hero-text {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        margin: auto;
+    }
+
+    .hero-container .hero .text {
+        position: absolute;
+        left: var(--margin);
+        bottom: calc(var(--margin) * 0.5);
+
+        width: 30%;
+        min-width: 500px;
+        margin: 0px;
+        text-align: left;
+    }
+
+    .hero-container .hero .text .more {
+        position: absolute;
+        left: 100%;
+        top: 0px;
+
+        width: 1.8vw;
+    }
+
+    .hero-container .hero .date {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        position: absolute;
+        bottom: var(--margin);
+        right: calc(var(--margin) / 2);
+    }
+
+    .hero-container .hero .date img {
+        width: 1.5vw;
+        margin-bottom: 20px;
+    }
+
+    footer .content {
+        flex-wrap: nowrap;
+        gap: calc(var(--margin) / 2);
+        margin: var(--margin) calc(var(--aside-width) + var(--margin));
+    }
+
+    footer > p {
+        margin-left: calc(var(--aside-width) + var(--margin));
+        margin-top: 0px;
+        margin-bottom: var(--margin);
+    }
+}

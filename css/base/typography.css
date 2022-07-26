@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+@font-face {
+    font-family: 'MarketOT';
+    font-weight: 400;
+    src: url('/resource/font/market-regular.ttf');
+}
+
+html {
+    font-family: 'Montserrat', sans-serif;
+    font-size: calc(14px + 0.1vw);
+}

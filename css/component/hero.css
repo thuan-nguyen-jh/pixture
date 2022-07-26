@@ -1,0 +1,49 @@
+@import url('./heroText.css');
+
+aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: var(--aside-width);
+}
+
+aside p {
+    font-size: 1rem;
+    writing-mode: vertical-rl;
+    transform: rotate(0.5turn);
+}
+
+.hero-container {
+    display: flex;
+    height: 100vh;
+}
+
+.hero-container aside .sub-text {
+    font-size: 0.7rem;
+    padding-top: 10px;
+}
+
+.hero-container aside .arrow {
+    width: 20px;
+
+    margin: 80px 5px;
+}
+
+.hero-container .hero {
+    flex-grow: 1;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hero-container .hero .text header {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.hero-container .hero .text p {
+    margin-top: 20px;
+    line-height: 1.5;
+}
