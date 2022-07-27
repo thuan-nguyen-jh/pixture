@@ -1,5 +1,7 @@
 :root {
     --primary-color: #130326;
+    --aside-width: calc(40px + 4vw);
+    --margin: 3vw;
 }
 
 html {
@@ -20,6 +22,10 @@ html {
 }
 
 @media screen and (min-width: 1000px) {
+    :root {
+        --margin: 7vw;
+    }
+    
     .mobile {
         display: none;
     }

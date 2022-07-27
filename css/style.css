@@ -3,11 +3,9 @@
 @import url('./base/typography.css');
 
 @import url('./component/hero.css');
-
-:root {
-    --aside-width: calc(40px + 4vw);
-    --margin: 3vw;
-}
+@import url('./component/carousel.css');
+@import url('./component/header.css');
+@import url('./component/footer.css');
 
 .paint-your-pixture .hero {
     background-image: url('/resource/image/hero1.png');
@@ -29,6 +27,12 @@
     position: absolute;
     bottom: var(--margin);
     right: var(--margin);
+}
+
+.carousel-heading {
+    font-size: 1.1rem;
+    margin-left: calc(var(--aside-width) + var(--margin));
+    margin-top: calc(10px + 2vw);;
 }
 
 .your-passion {
@@ -128,33 +132,6 @@
     width: 90%;
 }
 
-footer .content {
-    display: flex;
-    flex-wrap: wrap;
-    margin: calc(2 * var(--margin));
-    gap: calc(2 * var(--margin));
-}
-
-footer .card {
-    flex: 0 1 250px;
-    line-height: 1.5;
-}
-
-footer header {
-    color: #0d4363;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-}
-
-footer li {
-    margin-bottom: 15px;
-}
-
-footer > p {
-    color: #5c5b61;
-    margin: calc(2 * var(--margin));
-}
-
 @media screen and (min-width: 500px) {
     .paint-your-pixture .hero .text {
         width: 70%;
@@ -170,10 +147,6 @@ footer > p {
 }
 
 @media screen and (min-width: 1000px) {
-    :root {
-        --margin: 7vw;
-    }
-
     .your-passion aside {
         display: flex;
         flex-shrink: 0;
@@ -192,6 +165,7 @@ footer > p {
         flex-wrap: nowrap;
         gap: calc(var(--margin) / 3);
         margin: calc(var(--margin) / 2) var(--margin);
+        margin-right: 17vw;
     }
 
     .your-passion .paragraph .section .card header {
@@ -270,17 +244,5 @@ footer > p {
     .hero-container .hero .date img {
         width: 1.5vw;
         margin-bottom: 20px;
-    }
-
-    footer .content {
-        flex-wrap: nowrap;
-        gap: calc(var(--margin) / 2);
-        margin: var(--margin) calc(var(--aside-width) + var(--margin));
-    }
-
-    footer > p {
-        margin-left: calc(var(--aside-width) + var(--margin));
-        margin-top: 0px;
-        margin-bottom: var(--margin);
     }
 }

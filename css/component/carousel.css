@@ -1,0 +1,140 @@
+.carousel {
+    display: flex;
+}
+
+.carousel .carousel-container {
+    flex: 1;
+}
+
+.carousel .next-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.carousel .next-btn img {
+    width: 40px;
+    margin: 0px var(--margin);
+}
+
+.carousel-container {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: calc(10px + 2vw);
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    margin: calc(10px + 2vw) 0px;
+}
+
+.carousel-container .card {
+    display: flex;
+    flex-direction: column;
+
+    flex: 0 0 auto;
+    width: 25vw;
+    min-width: 300px;
+    background-color: white;
+    color: black;
+}
+
+.carousel-container .card .card-header {
+    flex: 0 0 auto;
+    height: 10vw;
+    min-height: 150px;
+
+    background-image: url('/resource/image/hero1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.carousel-container .card .card-header .floating-text {
+    position: absolute;
+    right: var(--margin);
+    bottom: var(--margin);
+    font-size: 0.8rem;
+    color: white;
+
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.carousel-container .card .card-body {
+    flex: 1 0 auto;
+    padding: calc(2 * var(--margin));
+}
+
+.carousel-container .card .card-body header {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.carousel-container .card .card-footer {
+    flex: 0 0 auto;
+    height: 10vw;
+    min-height: 50px;
+    
+    display: flex;
+    justify-content: space-between;
+    border-top: #ccc 2px solid;
+}
+
+.carousel-container .card .card-footer .comment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-right: #ccc 2px solid;
+    padding: var(--margin)
+}
+
+.carousel-container .card .card-footer .more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: #ccc 2px solid;
+    background-color: #ccc;
+    aspect-ratio: 1 / 1;
+}
+
+@media screen and (min-width: 500px) {
+    .carousel-container .card .card-body {
+        padding: var(--margin);
+    }
+
+    .carousel-container .card .card-footer {
+        height: 5vw;
+    }
+
+    .carousel-container .card .card-footer .comment {
+        padding: calc(var(--margin) / 2);
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .carousel-container .card .card-header .floating-text  {
+        right: 2vh;
+        bottom: 2vh;
+    }
+
+    .carousel-container .card .card-body {
+        padding: calc(var(--margin) / 2);
+    }
+
+    .carousel-container .card .card-footer .comment {
+        padding: 0px calc(20px + 1vw);
+    }
+
+    .carousel .next-btn img {
+        width: 3vw;
+    }
+
+    .carousel .next-btn {
+        display: flex;
+    }
+}
