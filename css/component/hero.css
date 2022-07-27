@@ -28,6 +28,8 @@ aside p {
 .hero-container aside .arrow {
     width: 20px;
     margin: 80px 5px;
+
+    animation: 1s ease-in 0.1s infinite both running slidein;
 }
 
 .hero-container .hero {
@@ -45,4 +47,13 @@ aside p {
 .hero-container .hero .text p {
     margin-top: 20px;
     line-height: 1.5;
+}
+
+@keyframes slidein {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(50px);
+    }
 }

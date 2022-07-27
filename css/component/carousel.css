@@ -28,6 +28,12 @@
     overflow-x: auto;
     scroll-behavior: smooth;
     margin: calc(10px + 2vw) 0px;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none;
 }
 
 .carousel-container .card {

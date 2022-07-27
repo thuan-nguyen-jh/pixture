@@ -1,7 +1,7 @@
 const carousel = document.getElementsByClassName('carousel');
 for (let item of carousel) {
     const container = item.querySelector('.carousel-container');
-    const button = item.querySelector('.next-btn'); 
+    const button = item.querySelector('.next-btn');
     const card = item.querySelector('.card');
 
     let pressed = false;
@@ -34,8 +34,24 @@ for (let item of carousel) {
         }
     });
 
-    container.addEventListener('mouseup', () => {
-        pressed = false;
-        container.style.cursor = 'default';
+    ['mouseup', 'mouseleave'].forEach(event => {
+        container.addEventListener(event, () => {
+            pressed = false;
+            const distance = container.scrollLeft - x;
+            const step = Math.ceil(Math.abs(distance) / card.offsetWidth);
+            if (distance > 0) {
+                container.scrollLeft = x + step * card.offsetWidth;
+            } else if (distance < 0) {
+                container.scrollLeft = x - step * card.offsetWidth;
+            }
+            container.style.cursor = 'default';
+        });
     });
 }
+
+const toggleBtn = document.querySelector('body > header .toggle');
+const navigation = document.querySelector('body > header nav');
+toggleBtn.addEventListener('click', () => {
+    navigation.classList.toggle('show');
+    toggleBtn.classList.toggle('active');
+});

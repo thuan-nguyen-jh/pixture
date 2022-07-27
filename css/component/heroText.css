@@ -11,6 +11,7 @@
     
     text-align: center;
     white-space: nowrap;
+    animation: zoomOut 1s ease-in-out;
     mask-image: radial-gradient(circle, rgba(0, 0, 0, 0) 20%, black 20%);
 }
 
@@ -35,10 +36,33 @@
     border-style: solid;
     border-color: inherit;
     border-radius: 50%;
+    animation: zoomIn 1s ease-in-out;
 }
 
 .hero-text.no-style .main-text {
     text-align: left;
     white-space: inherit;
     mask-image: none;
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0);
+        visibility: hidden;
+    }
+    100% {
+        transform: scale(1);
+        visibility: show;
+    }
+}
+
+@keyframes zoomOut {
+    0% {
+        transform: scale(2);
+        visibility: hidden;
+    }
+    100% {
+        transform: scale(1);
+        visibility: show;
+    }
 }
