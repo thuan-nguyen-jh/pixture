@@ -35,15 +35,6 @@
     margin-top: calc(10px + 2vw);;
 }
 
-.your-passion {
-    background-color: var(--primary-color);
-    background-image: url('/resource/image/gradient.png'), url('/resource/image/cover-overlay2.png');
-    background-position: center, left;
-    background-size: cover, 50%;
-    background-repeat: no-repeat;
-    background-blend-mode: overlay, normal;
-}
-
 .your-passion aside {
     display: none;
 }
@@ -151,6 +142,15 @@
         display: flex;
         flex-shrink: 0;
     }
+
+    .your-passion {
+    background-color: var(--primary-color);
+    background-image: url('/resource/image/gradient.png'), url('/resource/image/cover-overlay2.png');
+    background-position: center, -25%;
+    background-size: cover, 50%;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay, normal;
+}
 
     .your-passion .paragraph .text {
         column-count: 2;

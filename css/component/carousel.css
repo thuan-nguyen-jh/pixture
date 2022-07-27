@@ -41,6 +41,10 @@
     color: black;
 }
 
+.carousel-container .card {
+    clip-path: polygon(0 0, 0 calc(max(10vw, 150px) - 5%), 8% max(10vw, 150px), 0 calc(max(10vw, 150px) + 5%), 0 100%, 100% 100%, 100% 0%);
+}
+
 .carousel-container .card .card-header {
     flex: 0 0 auto;
     height: 10vw;
