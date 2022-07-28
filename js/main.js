@@ -13,6 +13,7 @@ for (let item of carousel) {
     const card = item.querySelector('.card');
     const cardWidth = card.offsetWidth + parseFloat(window.getComputedStyle(container).columnGap);
 
+    let inContainer = false;
     let pressed = false;
     let startX;
     let x;
@@ -22,13 +23,14 @@ for (let item of carousel) {
     let currCards = Array.from(item.getElementsByClassName('card'));
     let prevCards = cloneCard(templateCards);
     let currentIndex = 0;
+    container.scrollLeft = 0;
 
     container.prepend(...prevCards);
     container.scrollLeft += prevCards.length * cardWidth;
     container.append(...nextCards);
 
     container.addEventListener('scroll', (e) => {
-        if (pressed) {
+        if (pressed || !inContainer) {
             return;
         }
 
@@ -38,6 +40,7 @@ for (let item of carousel) {
         const firstNextCardPosRelativeLeftSide = firstNextCard.offsetLeft - container.scrollLeft;
         const lastPrevCardPosRelativeRightSide = (lastPrevCard.offsetLeft) - (container.scrollLeft + container.offsetWidth);
         
+        let newIndex = currentIndex;
         if (firstNextCardPosRelativeLeftSide <= 0) {
             console.log('Move to next fragment');
             
@@ -51,10 +54,8 @@ for (let item of carousel) {
             nextCards = cloneCard(templateCards);
             container.append(...nextCards);
 
-            currentIndex = currentIndex % currCards.length;
-        }
-
-        if (lastPrevCardPosRelativeRightSide >= 0) {
+            newIndex = currentIndex % currCards.length;
+        } else if (lastPrevCardPosRelativeRightSide >= 0) {
             console.log('Move to prev fragment');
 
             nextCards.forEach(card => {
@@ -67,12 +68,19 @@ for (let item of carousel) {
             prevCards = cloneCard(templateCards);
             container.prepend(...prevCards);
 
-            currentIndex = currCards.length + currentIndex % currCards.length;
+            newIndex = currCards.length + currentIndex % currCards.length;
         }
-        moveToCurrent();
+
+        moveToIndex(newIndex);
     });
 
-    function moveToCurrent() {
+    function moveToIndex(index) {
+        if (index !== currentIndex) {
+            currentIndex = index;
+        } else {
+            return;
+        }
+
         console.log('Current index: ', currentIndex);
         if (currentIndex >= currCards.length) {
             nextCards[currentIndex % currCards.length].scrollIntoView({block:'nearest', inline:'start', behavior: 'smooth'});
@@ -83,9 +91,22 @@ for (let item of carousel) {
         }
     }
 
+    function onEndDrag(e) {
+        pressed = false;
+        const distance = container.scrollLeft - x;
+        const step = Math.ceil(Math.abs(distance) / cardWidth);
+        
+        let newIndex = currentIndex;
+        if (distance > 0) {
+            newIndex += step;
+        } else if (distance < 0) {
+            newIndex -= step;
+        }
+        moveToIndex(newIndex);
+    }
+
     button.addEventListener('click', () => {
-        currentIndex++;
-        moveToCurrent();
+        moveToIndex(currentIndex + 1);
     });
 
     container.addEventListener('mousedown', (e) => {
@@ -103,19 +124,11 @@ for (let item of carousel) {
         }
     });
 
-    ['mouseup', 'mouseleave'].forEach(event => {
-        container.addEventListener(event, () => {
-            pressed = false;
-            const distance = container.scrollLeft - x;
-            const step = Math.ceil(Math.abs(distance) / cardWidth);
-            if (distance > 0) {
-                currentIndex += step;
-            } else if (distance < 0) {
-                currentIndex -= step;
-            }
-            moveToCurrent();
-        });
-    });
+    container.addEventListener('mouseup', onEndDrag);
+    container.addEventListener('mouseleave', onEndDrag);
+
+    item.addEventListener('mouseenter', () => inContainer = true);
+    item.addEventListener('mouseleave', () => inContainer = false);
 }
 
 const toggleBtn = document.querySelector('body > header .toggle');
