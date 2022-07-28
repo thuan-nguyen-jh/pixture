@@ -92,7 +92,13 @@ for (let item of carousel) {
     }
 
     function onEndDrag(e) {
+        if (!pressed) {
+            return;
+        }
+
         pressed = false;
+        container.style.cursor = 'auto';
+
         const distance = container.scrollLeft - x;
         const step = Math.ceil(Math.abs(distance) / cardWidth);
         
