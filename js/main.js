@@ -29,6 +29,44 @@ for (let item of carousel) {
     container.scrollLeft += prevCards.length * cardWidth;
     container.append(...nextCards);
 
+    function moveToIndex(index) {
+        if (index !== currentIndex) {
+            currentIndex = index;
+        } else {
+            return;
+        }
+
+        console.log('Current index: ', currentIndex);
+        const scrollOption = { block: 'nearest', inline: 'start', behavior: 'smooth' };
+        if (currentIndex >= currCards.length) {
+            nextCards[currentIndex % currCards.length].scrollIntoView(scrollOption);
+        } else if (currentIndex < 0) {
+            prevCards[currCards.length + currentIndex % currCards.length].scrollIntoView(scrollOption);
+        } else {
+            currCards[currentIndex].scrollIntoView(scrollOption);
+        }
+    }
+
+    function onEndDrag(e) {
+        if (!pressed) {
+            return;
+        }
+
+        pressed = false;
+        container.style.cursor = 'auto';
+
+        const distance = container.scrollLeft - x;
+        const step = Math.ceil(Math.abs(distance) / cardWidth);
+
+        let newIndex = currentIndex;
+        if (distance > 0) {
+            newIndex += step;
+        } else if (distance < 0) {
+            newIndex -= step;
+        }
+        moveToIndex(newIndex);
+    }
+
     container.addEventListener('scroll', (e) => {
         if (pressed || !inContainer) {
             return;
@@ -39,11 +77,11 @@ for (let item of carousel) {
 
         const firstNextCardPosRelativeLeftSide = firstNextCard.offsetLeft - container.scrollLeft;
         const lastPrevCardPosRelativeRightSide = (lastPrevCard.offsetLeft) - (container.scrollLeft + container.offsetWidth);
-        
+
         let newIndex = currentIndex;
         if (firstNextCardPosRelativeLeftSide <= 0) {
             console.log('Move to next fragment');
-            
+
             prevCards.forEach(card => {
                 card.remove();
                 container.scrollLeft -= cardWidth;
@@ -74,43 +112,6 @@ for (let item of carousel) {
         moveToIndex(newIndex);
     });
 
-    function moveToIndex(index) {
-        if (index !== currentIndex) {
-            currentIndex = index;
-        } else {
-            return;
-        }
-
-        console.log('Current index: ', currentIndex);
-        if (currentIndex >= currCards.length) {
-            nextCards[currentIndex % currCards.length].scrollIntoView({block:'nearest', inline:'start', behavior: 'smooth'});
-        } else if (currentIndex < 0) {
-            prevCards[currCards.length + currentIndex % currCards.length].scrollIntoView({inline:'start', behavior: 'smooth'});
-        } else {
-            currCards[currentIndex].scrollIntoView({block:'nearest', inline:'start', behavior: 'smooth'});
-        }
-    }
-
-    function onEndDrag(e) {
-        if (!pressed) {
-            return;
-        }
-
-        pressed = false;
-        container.style.cursor = 'auto';
-
-        const distance = container.scrollLeft - x;
-        const step = Math.ceil(Math.abs(distance) / cardWidth);
-        
-        let newIndex = currentIndex;
-        if (distance > 0) {
-            newIndex += step;
-        } else if (distance < 0) {
-            newIndex -= step;
-        }
-        moveToIndex(newIndex);
-    }
-
     button.addEventListener('click', () => {
         moveToIndex(currentIndex + 1);
     });
@@ -123,7 +124,7 @@ for (let item of carousel) {
         container.style.cursor = 'grab';
     });
 
-    container.addEventListener('mousemove', (e) => {    
+    container.addEventListener('mousemove', (e) => {
         if (pressed) {
             e.preventDefault();
             container.scrollLeft = x + startX - e.clientX;
